@@ -1,7 +1,7 @@
 <?
 use \Phalcon\Http\Response;
 
-class RssController extends SecureController {
+class RssController extends BaseController {
 	
 	public function indexAction()
 	{

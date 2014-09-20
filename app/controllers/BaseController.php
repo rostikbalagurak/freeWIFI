@@ -3,7 +3,7 @@
 use Phalcon\Mvc\Controller;
 use \Phalcon\Mvc\View;
 
-class SecureController extends Controller
+class BaseController extends Controller
 {
 	public function beforeExecuteRoute() {
 		$this->view->disable();

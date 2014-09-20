@@ -1,6 +1,6 @@
 <?php
 
-class IndexController extends SecureController
+class IndexController extends BaseController
 {
 
     public function indexAction()

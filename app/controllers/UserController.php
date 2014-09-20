@@ -1,6 +1,6 @@
 <?php
 use \Phalcon\Http\Response;
-class UserController extends SecureController
+class UserController extends BaseController
 {
 
 	public function indexAction()
