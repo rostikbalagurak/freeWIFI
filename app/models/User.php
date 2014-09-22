@@ -2,7 +2,6 @@
 
 use Phalcon\Mvc\Model as Model;
 use Phalcon\Config;
-use Phalcon\Mvc\Model\Query\Builder;
 
 class User extends Model{
 	const COL_ID = 'id';
@@ -132,26 +131,13 @@ class User extends Model{
 	 * @return User|false
 	 */
 	public static function get($email, $password){
-		//TODO !!!!!
-		$emailCondition = Utils::getQueryCondition(self::COL_EMAIL, $email, '=', true);
-		$passCondition = Utils::getQueryCondition(self::COL_PASSWORD, $password , '=', true);
-
-		$builder = new Builder();
-		$res = $builder
-			->columns(array(self::COL_ID))
-			->from('User')
-			->where($emailCondition)
-			->andWhere($passCondition)
+		$query = User::query()
+			->where("email = :email:")
+			->andWhere("password = :password:")
+			->bind(array("email" => $email, "password" => $password))
 			->limit(1)
-			->getQuery()
 			->execute();
 		
-		if($res->count() > 0){
-			$first = $res->getFirst();
-			$id = (int)$first['id'];
-			return self::find(array(Utils::getQueryCondition(self::COL_ID, $id, '=', false)));
-		} else {
-			return false;
-		}
+			return $query->getFirst();
 	}
 }

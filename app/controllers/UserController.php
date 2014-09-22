@@ -19,7 +19,7 @@ class UserController extends BaseController
 				'user_id' => $user->getId(),
 				'firstname' => $user->getFirstname(),
 				'lastname' => $user->getLastname(),
-				'email' => $user->getLastname(),
+				'email' => $user->getEmail(),
 			);
 			
 			$this->setOkStatus();
@@ -52,7 +52,7 @@ class UserController extends BaseController
 					'user_id' => $user->getId(),
 					'firstname' => $user->getFirstname(),
 					'lastname' => $user->getLastname(),
-					'email' => $user->getLastname(),
+					'email' => $user->getEmail(),
 				);
 				$this->setOkStatus();
 			} catch(Exception $e){
