@@ -10,6 +10,8 @@ class User extends Model{
 	const COL_lASTNAME = 'lastname';
 	const COL_PASSWORD = 'password';
 	
+	const FB_PREFIX = 'fb_';
+	
 	const TBL_NAME = 'users';
 	
 	private $id;
@@ -17,6 +19,26 @@ class User extends Model{
 	private $firstname;
 	private $lastname;
 	private $password;
+	private $facebook_id;
+
+	/**
+	 * @return string
+	 */
+	public function getFacebookId()
+	{
+		return $this->facebook_id;
+	}
+
+	/**
+	 * @param string $facebook_id
+	 */
+	public function setFacebookId($facebook_id)
+	{
+		if(strpos($facebook_id, self::FB_PREFIX) === false){
+			$facebook_id = self::FB_PREFIX . $facebook_id;
+		}
+		$this->facebook_id = $facebook_id;
+	}
 
 	/**
 	 * @return mixed
@@ -41,7 +63,7 @@ class User extends Model{
 	
 	public function initialize(){
 		$this->setSource(self::TBL_NAME);
-		$this->hasMany(self::COL_ID, 'RssItem', RssItem::COL_USER_ID);
+		$this->hasMany(self::COL_ID, 'RssItem', WifiSpot::COL_OWNER_ID);
 	}
 	
 	/**
