@@ -4,7 +4,7 @@ return new \Phalcon\Config(array(
     'database' => array(
         'adapter'     => 'Mysql',
         'host'        => 'localhost',
-        'username'    => 'simple_rss',
+        'username'    => 'rba',
         'password'    => '1111',
         'dbname'      => 'simpleRSS',
     ),

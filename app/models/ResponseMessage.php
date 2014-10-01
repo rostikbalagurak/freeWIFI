@@ -6,6 +6,6 @@ class ResponseMessage{
 	
 	//user
 	const USER_EXIST = '001';
-	const NOT_FOUND = '003';
+	const USER_NOT_FOUND = '003';
 	//rss item
 }

@@ -26,7 +26,7 @@ class UserController extends BaseController
 		} else {
 			$this->setNotFoundStatus();
 			$responseData = array(
-				'result' => ResponseMessage::NOT_FOUND,
+				'result' => ResponseMessage::USER_NOT_FOUND,
 			);
 		}
 		$this->sendResponse($responseData);
