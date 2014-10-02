@@ -16,7 +16,7 @@ class UserController extends BaseController
 		if($user){
 			$responseData = array(
 				'result' => ResponseMessage::OK,
-				'user_id' => $user->getId(),
+				'user_id' => $user->getUserId(),
 				'firstname' => $user->getFirstname(),
 				'lastname' => $user->getLastname(),
 				'email' => $user->getEmail(),
@@ -32,39 +32,47 @@ class UserController extends BaseController
 		$this->sendResponse($responseData);
 	}
 	
-	public function createAction($email, $password, $firstname = "", $lastname = ""){
-		if(User::exist($email)){
+	public function createAction(){
+		$responseData = array();
+		if(!$this->request->isPost()){
 			$this->setBadRequestStatus();
-			$responseData = array(
-				'result' => ResponseMessage::USER_EXIST,
-			);
 		} else {
-			try{
-				$user = new User();
-				$user->setEmail($email);
-				$user->setPassword($password, true);
-				$user->setFirstname($firstname);
-				$user->setLastname($lastname);
-				$user->save();
-				
+			$this->setOkStatus();
+			if(User::exist($this->request->getPost('email'))){
 				$responseData = array(
-					'result' => ResponseMessage::OK,
-					'user_id' => $user->getId(),
-					'firstname' => $user->getFirstname(),
-					'lastname' => $user->getLastname(),
-					'email' => $user->getEmail(),
+					'result' => ResponseMessage::USER_EXIST,
 				);
-				$this->setOkStatus();
-			} catch(Exception $e){
-				$responseData = array(
-					'result' => ResponseMessage::UNKNOWN_ERROR,
-				);
-				$this->setInternalErrorStatus();
+			} else {
+				try{
+					$user = new User();
+					$user->setEmail($this->request->getPost('email'));
+					$user->setPassword($this->request->getPost('password'), true);
+					
+					if($firstName = $this->request->getPost('firstname')){
+						$user->setFirstname($firstName);
+					}
+					if($lastName = $this->request->getPost('lastname')){
+						$user->setLastname($lastName);
+					}
+					if($fb_id = $this->request->getPost('facebook_id')){
+						$user->setFacebookId($fb_id);
+					}
+					$user->save();
+
+					$responseData = array(
+						'result' => ResponseMessage::OK,
+						'user_id' => $user->getUserId(),
+					);
+				} catch(Exception $e){
+					$this->handleError($e->getMessage());
+					return;
+				}
 			}
 		}
 		
 		$this->sendResponse($responseData);
 	}
+	
 
 }
 

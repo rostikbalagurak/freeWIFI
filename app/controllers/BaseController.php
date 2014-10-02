@@ -30,4 +30,13 @@ class BaseController extends Controller
 	protected function setBadRequestStatus(){
 		$this->response->setStatusCode(400, 'Bad Request');
 	}
+	
+	protected function handleError($message){
+		$responseData = array(
+			'result' => ResponseMessage::INTERNAL_ERROR,
+			'message' => $message
+		);
+		$this->setInternalErrorStatus();
+		$this->sendResponse($responseData);
+	}
 }

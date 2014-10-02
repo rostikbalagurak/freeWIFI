@@ -21,7 +21,7 @@ class WifiController extends BaseController {
 				);
 			} else {
 				$responseData = array(
-					'result' => ResponseMessage::UNKNOWN_ERROR
+					'result' => ResponseMessage::INTERNAL_ERROR
 				);
 			}
 			
@@ -29,7 +29,7 @@ class WifiController extends BaseController {
 		} catch (Exception $e){
 			$this->setInternalErrorStatus();
 			
-			$result = ResponseMessage::UNKNOWN_ERROR;
+			$result = ResponseMessage::INTERNAL_ERROR;
 			$responseData = array(
 				'result' => $result,
 			);

@@ -2,7 +2,7 @@
 
 class ResponseMessage{
 	const OK = '000';
-	const UNKNOWN_ERROR = '002';
+	const INTERNAL_ERROR = '002';
 	
 	//user
 	const USER_EXIST = '001';
