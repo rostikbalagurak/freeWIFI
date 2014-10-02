@@ -12,9 +12,9 @@ class User extends Model{
 	
 	const FB_PREFIX = 'fb_';
 	
-	const TBL_NAME = 'users';
+	const TBL_NAME = 'user';
 	
-	private $id;
+	private $user_id;
 	private $email;
 	private $firstname;
 	private $lastname;
@@ -101,17 +101,17 @@ class User extends Model{
 	/**
 	 * @return Integer
 	 */
-	public function getId()
+	public function getUserId()
 	{
-		return $this->id;
+		return $this->user_id;
 	}
 
 	/**
 	 * @param Integer $id
 	 */
-	public function setId($id)
+	public function setUserId($id)
 	{
-		$this->id = $id;
+		$this->user_id = $id;
 	}
 
 	/**
@@ -161,5 +161,18 @@ class User extends Model{
 			->execute();
 		
 			return $query->getFirst();
+	}
+	
+	public function beforeCreate(){
+		if(!isset($this->password) || !isset($this->email)){
+			throw new Exception('Some of necessary data is missing');
+		}
+	}
+	
+	public function save($data = null, $whiteList = null){
+		if(!isset($this->password) || !isset($this->email)){
+			throw new Exception('Some of necessary data is missing');
+		}
+		parent::save($data, $whiteList);
 	}
 }
