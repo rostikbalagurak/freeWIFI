@@ -1,4 +1,4 @@
-simpleRSS
+freeWifi
 =========
 
-Restful server for simple android RSS app based on Phalcon Framework
+Restful server for android app based on Phalcon Framework
