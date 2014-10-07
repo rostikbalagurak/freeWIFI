@@ -4,7 +4,8 @@ use Phalcon\Mvc\Model as Model;
 use Phalcon\Config;
 
 class User extends Model{
-	const COL_ID = 'id';
+	const COL_ID = 'user_id';
+	const COL_FACEBOOK_ID = 'facebook_id';
 	const COL_EMAIL = 'email';
 	const COL_FIRSTNAME = 'firstname';
 	const COL_lASTNAME = 'lastname';
@@ -20,6 +21,11 @@ class User extends Model{
 	private $lastname;
 	private $password;
 	private $facebook_id;
+
+	public function initialize(){
+		$this->setSource(self::TBL_NAME);
+		$this->hasMany(self::COL_ID, 'WifiSpot', WifiSpot::COL_OWNER_ID);
+	}
 
 	/**
 	 * @return string
@@ -61,10 +67,6 @@ class User extends Model{
 		$this->password = $password;
 	}
 	
-	public function initialize(){
-		$this->setSource(self::TBL_NAME);
-		$this->hasMany(self::COL_ID, 'RssItem', WifiSpot::COL_OWNER_ID);
-	}
 	
 	/**
 	 * @return String
@@ -143,7 +145,7 @@ class User extends Model{
 	 * @param array $parameters
 	 * @return User
 	 */
-	public static function findFirst($parameters = array()){
+	public static function findFirst($parameters = null){
 		return parent::findFirst($parameters);
 	}
 
@@ -163,16 +165,26 @@ class User extends Model{
 			return $query->getFirst();
 	}
 	
-	public function beforeCreate(){
-		if(!isset($this->password) || !isset($this->email)){
-			throw new Exception('Some of necessary data is missing');
-		}
-	}
-	
 	public function save($data = null, $whiteList = null){
+		$this->verifyData();
+		parent::save($data, $whiteList);
+	}
+
+	/**
+	 * @throws Exception
+	 */
+	private function verifyData(){
 		if(!isset($this->password) || !isset($this->email)){
 			throw new Exception('Some of necessary data is missing');
 		}
-		parent::save($data, $whiteList);
+		
+		switch(true){
+			case !isset($this->password):
+				throw new Exception('Password is missing');
+			break;
+			case !isset($this->email):
+				throw new Exception('Email is missing');
+			break;
+		}
 	}
 }

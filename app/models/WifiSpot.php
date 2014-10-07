@@ -4,11 +4,11 @@ use \Phalcon\Mvc\Model;
 
 class WifiSpot extends Model
 {
-	const TBL_NAME = 'rss_item';
+	const TBL_NAME = 'wifi_spot';
 
-	const COL_OWNER_ID = 'owner_id';
-	const COL_ID = 'id';
+	const COL_SPOT_ID = 'spot_id';
 	const COL_NAME = 'name';
+	const COL_OWNER_ID = 'owner_id';
 	const COL_PASSWORD = 'password';
 	const COL_ADDRESS = 'address';
 	const COL_POPULARITY = 'popularity';
@@ -37,6 +37,27 @@ class WifiSpot extends Model
 				$this->$property = $value;
 			}
 		}
+	}
+
+	/**
+	 * @param null $params
+	 * @return WifiSpot
+	 */
+	public static function findFirst($params = null){
+		return parent::findFirst($params);
+	}
+	
+	public function asArray(){
+		return array(
+			self::COL_SPOT_ID => $this->spot_id,
+			self::COL_NAME => $this->name,
+			self::COL_PASSWORD => $this->password,
+			self::COL_OWNER_ID => $this->owner_id,
+			self::COL_POPULARITY => $this->popularity,
+			self::COL_ADDRESS => $this->address,
+			self::COL_LAT => $this->lat,
+			self::COL_LNG => $this->lng
+		);
 	}
 
 	/**
