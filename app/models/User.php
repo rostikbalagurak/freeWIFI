@@ -1,6 +1,6 @@
 <? 
 
-use Phalcon\Mvc\Model as Model;
+use Phalcon\Mvc\Model;
 use Phalcon\Config;
 
 class User extends Model{
@@ -155,7 +155,6 @@ class User extends Model{
 	 * @return User|false
 	 */
 	public static function get($email, $password){
-		return 'gtfo';
 		$query = User::query()
 			->where("email = :email:")
 			->andWhere("password = :password:")
