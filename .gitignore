@@ -1,2 +1,4 @@
 app/cache
+app/config/app.php
+app/config/config.php
 .idea/
