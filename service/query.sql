@@ -1,6 +1,6 @@
-CREATE DATABASE simpleRSS;
+CREATE DATABASE `simple-wifi`;
 
-USE simpleRSS;
+USE `simple-wifi`;
 
 CREATE TABLE user(
   user_id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
