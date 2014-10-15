@@ -22,10 +22,10 @@ class User extends Model{
 	private $password;
 	private $facebook_id;
 
-	public function initialize(){
-		$this->setSource(self::TBL_NAME);
-		$this->hasMany(self::COL_ID, 'WifiSpot', WifiSpot::COL_OWNER_ID);
-	}
+//	public function initialize(){
+//		$this->setSource(self::TBL_NAME);
+//		$this->hasMany(self::COL_ID, 'WifiSpot', WifiSpot::COL_OWNER_ID);
+//	}
 
 	/**
 	 * @return string
