@@ -15,27 +15,32 @@ class UserController extends BaseController
 
 
 	public function getAction($email, $password){
-		$app = $this->getDI()->get('app');
-		$salt = $app->auth->salt;
-		$user = User::get($email, md5($password . $salt));
-		
-		if($user){
-			$responseData = array(
-				'result' => ResponseMessage::OK,
-				'user_id' => $user->getUserId(),
-				'firstname' => $user->getFirstname(),
-				'lastname' => $user->getLastname(),
-				'email' => $user->getEmail(),
-			);
-			
-			$this->setOkStatus();
-		} else {
-			$this->setNotFoundStatus();
-			$responseData = array(
-				'result' => ResponseMessage::USER_NOT_FOUND,
-			);
+		try{
+			$app = $this->getDI()->get('app');
+			$salt = $app->auth->salt;
+			$user = User::get($email, md5($password . $salt));
+
+			if($user){
+				$responseData = array(
+					'result' => ResponseMessage::OK,
+					'user_id' => $user->getUserId(),
+					'firstname' => $user->getFirstname(),
+					'lastname' => $user->getLastname(),
+					'email' => $user->getEmail(),
+				);
+
+				$this->setOkStatus();
+			} else {
+				$this->setNotFoundStatus();
+				$responseData = array(
+					'result' => ResponseMessage::USER_NOT_FOUND,
+				);
+			}
+			$this->sendResponse($responseData);
+		} catch(Exception $e){
+			print_r($e);
+			exit;
 		}
-		$this->sendResponse($responseData);
 	}
 	
 	public function createAction(){
