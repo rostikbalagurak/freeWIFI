@@ -7,7 +7,13 @@ class UserController extends BaseController
 	{
 		
 	}
-	
+	public function echoAction()
+	{
+		echo 'gtfo';
+		exit;
+	}
+
+
 	public function getAction($email, $password){
 		$app = $this->getDI()->get('app');
 		$salt = $app->auth->salt;
