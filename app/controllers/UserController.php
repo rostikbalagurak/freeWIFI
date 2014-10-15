@@ -15,12 +15,12 @@ class UserController extends BaseController
 
 
 	public function getAction($email, $password){
-		echo 'lalala';
-		exit;
 		try{
 			$app = $this->getDI()->get('app');
 			$salt = $app->auth->salt;
 			$user = User::get($email, md5($password . $salt));
+			print_r($user);
+			exit;
 
 			if($user){
 				$responseData = array(
