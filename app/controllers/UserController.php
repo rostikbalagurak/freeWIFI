@@ -15,6 +15,8 @@ class UserController extends BaseController
 
 
 	public function getAction($email, $password){
+		echo 'lalala';
+		exit;
 		try{
 			$app = $this->getDI()->get('app');
 			$salt = $app->auth->salt;
