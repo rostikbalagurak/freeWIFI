@@ -18,11 +18,14 @@ try {
      * Read services
      */
     include __DIR__ . "/../app/config/services.php";
-
-    /**
+	$user = new User();
+	echo '<pre>';
+	print_r($user);
+	echo '</pre>';
+	/**
      * Handle the request
      */
-    $application = new \Phalcon\Mvc\Application($di);
+	$application = new \Phalcon\Mvc\Application($di);
 
     echo $application->handle()->getContent();
 
