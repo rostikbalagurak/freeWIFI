@@ -24,7 +24,7 @@ class User extends Model{
 
 	public function initialize(){
 		$this->setSource(self::TBL_NAME);
-		$this->hasMany(self::COL_ID, 'WifiSpot', WifiSpot::COL_OWNER_ID);
+//		$this->hasMany(self::COL_ID, 'WifiSpot', WifiSpot::COL_OWNER_ID);
 	}
 
 	/**

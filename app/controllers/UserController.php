@@ -1,6 +1,6 @@
 <?php
 use \Phalcon\Http\Response;
-use User as Lalalala;
+
 class UserController extends BaseController
 {
 
@@ -13,7 +13,7 @@ class UserController extends BaseController
 		$app = $this->getDI()->get('app');
 		$salt = $app->auth->salt;
 		
-		$user = Lalalala::get($email, md5($password . $salt));
+		$user = User::get($email, md5($password . $salt));
 		if($user){
 			$responseData = array(
 				'result' => ResponseMessage::OK,
