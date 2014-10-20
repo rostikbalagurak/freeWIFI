@@ -22,8 +22,3 @@ $loader->registerClasses(
 );
 
 $loader->register();
-
-//print_r(new User);
-//print_r(new WifiSpot());
-print_r(new Utils());
-print_r(new ResponseMessage());
