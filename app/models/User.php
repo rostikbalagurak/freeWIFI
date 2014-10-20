@@ -1,4 +1,4 @@
-<? 
+<?php
 
 use Phalcon\Mvc\Model;
 use Phalcon\Config;
