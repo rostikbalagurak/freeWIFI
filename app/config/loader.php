@@ -14,11 +14,15 @@ $loader->registerDirs(
 
 $loader->registerClasses(
 	array(
-		"User"         => dirname(__DIR__) . "/models/User.php",
-		"ResponseMessage"         => dirname(__DIR__) . "/models/ResponseMessage.php",
-		"WifiSpot"         => dirname(__DIR__) . "/models/WifiSpot.php",
-		"Utils"         => dirname(__DIR__) . "/models/Utils.php",
+		"User"         => __DIR__ . "/../models/User.php",
+		"ResponseMessage"         => __DIR__ . "/../models/ResponseMessage.php",
+		"WifiSpot"         => __DIR__ . "/../models/WifiSpot.php",
+		"Utils"         => __DIR__ . "/../models/Utils.php",
 	)
 );
 
 $loader->register();
+echo __DIR__ . "/../models/User.php" . '<br>';
+echo __DIR__ . "/../models/ResponseMessage.php" . '<br>';
+echo __DIR__ . "/../models/WifiSpot.php" . '<br>';
+echo __DIR__ . "/../models/Utils.php" . '<br>';
