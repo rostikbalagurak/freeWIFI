@@ -1,4 +1,4 @@
-<?
+<?php
 use \Phalcon\Http\Response;
 
 class WifiController extends BaseController {
@@ -28,7 +28,7 @@ class WifiController extends BaseController {
 				$wifiSpot->save();
 				$responseData = array(
 					'result' => ResponseMessage::OK,
-					'spot_id' => $wifiSpot->getSpotId(),
+					'spot' => $wifiSpot->asArray(),
 				);
 			} catch(Exception $e){
 				$this->handleError($e->getMessage());

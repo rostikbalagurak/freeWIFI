@@ -27,7 +27,7 @@ class WifiSpot extends Model
 	public function initialize()
 	{
 		$this->setSource(self::TBL_NAME);
-//		$this->belongsTo(self::COL_OWNER_ID, "User", User::COL_ID);
+		$this->belongsTo(self::COL_OWNER_ID, "User", User::COL_ID);
 	}
 	
 	public function fill($data){
