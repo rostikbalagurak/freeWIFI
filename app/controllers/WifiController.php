@@ -46,7 +46,7 @@ class WifiController extends BaseController {
 		}
 		
 		$responseData = array(
-			'wifi_spot' => $wifiSpot
+			'spot' => $wifiSpot
 		);
 		$this->setOkStatus();
 		$this->sendResponse($responseData);
